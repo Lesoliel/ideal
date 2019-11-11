@@ -1,0 +1,49 @@
+Linux学习
+
+	IP查询
+	ping IP地址
+	再看回复结果
+	
+	根目录“/”
+	etc	操作系统的配置文件目录（类似于C盘	系统盘）
+	home 用户文件夹，类似于D盘等
+	cd = change directory	更换目录	作用类似于Windows双击动作
+	切换到根目录 cd /
+	ls 查看当前目录下的文件		（区别于Windows的点击后自动显示当前目录下内容）
+	切换目录必须加上上级目录
+	切换目录时，键入部分目录后，如果以此开头的目录唯一，使用TAB键可以补全此目录
+	cd .. ，退回上级目录
+	pwd		显示当前目录的路径
+	注销	Logout
+	重启	reboot
+	关机	Shutdown
+	查看文件	cat 文件名
+	zhangzhou:x:500:500:	用户 密码 用户编号 组编号
+	
+	用户管理命令
+		用户管理类
+			useradd		增加用户	
+				useradd -g 组名 用户名（组名必须已存在）
+				1、创建的账号信息保存在/etc/passwd文件中	
+				2、此账号的文件夹	/home/用户名（文件夹）
+			passwd		设置密码	（命令后加用户改用户密码，不加改管理员密码！！）
+			usermod		改用户设置		usermod -g 新组 用户名 将用户由默认组改至新组
+			userdel		删除用户信息
+				userdel 用户名	只删除/etc/passwd中的用户信息，/home/用户名（文件夹）仍存在
+				userdel -r 用户名 	删除/etc/passwd中的用户信息，/home/用户名（文件夹）也被删除
+		组管理类
+			groupadd	增加组
+				组信息在/etc/group 文件里查看
+			groupdel	删除组信息
+			groupmod	修改组名	groupmod -n 新名字 旧的组名
+			
+		cd 
+		ls 
+		useradd name
+		useradd -g group name
+		usermod -g group name
+		userdel name
+		userdel -r name
+		groupadd name
+		groupmod -n newname oldname
+		groupdel name
