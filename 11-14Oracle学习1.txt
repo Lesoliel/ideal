@@ -1,0 +1,70 @@
+全局数据库名————SID————数据库服务名    默认安装时orcl
+数据库管理员： sys   system（数据库口令针对管理员）
+    修改管理员密码manager
+    可操作人员SCOTT   密码tiger
+    sqlplus Oracle 默认的服务端命令行
+  oracle默认端口号1521
+  
+  
+		select * from emp;  
+		从表中查询列，*代表所有列，查询多列时，列之间用“，”隔开
+
+		select ename from emp;
+		select empno,ename,sal from emp;
+
+		select empno,ename,sal,sal+300 from emp;
+		select empno,ename,sal,(sal+500)*1.2 from emp;
+		列是数字类型时可以直接用表达式
+
+		select ename,sal,comm,sal+comm from emp;
+		select ename 姓名,sal 工资,(sal+500)*1.2 涨薪后 from emp;
+		select ename "XingMing" from emp;
+		给列取别名，列名后空格加别名，别名想要区分大小写
+		或者别名内容敏感时用“”括起
+
+		作业1：显示员工月工资（底薪加提成）
+		select ename,sal, comm,sal+nvl(comm,0) from emp;
+		与空值运算时使用nvl将空值转0后再运算
+
+		select ename||sal from emp;
+		||：连接符，用来连接列，列和字符串，字符串要用单引号括起来
+		select ename||'的工资是：'||sal from emp;
+		每一行的值都会显示连接符中间内容
+
+		去重查询:distinct
+		select distinct deptno from emp;
+		select distinct job from emp;
+
+		SQL语句分类
+		数据查询
+		数据操纵(DML)
+		数据定义(DDL)
+		事务控制(TCL)
+		数据控制(DCL)
+
+		作业2：PPT第二章3个练习题
+
+		限定查询 where
+		SQL语句不区分大小写，但表中数据的值严格区分大小写
+		------------------------------
+		1、找出名字叫SMITH的人
+		select * from emp where ename = 'SMITH';可以
+		select * from emp where ename = 'smith';不可以
+		关系运算符：>,<,>=,<=,<>(!=)(不等于)
+
+		2、找出提成比工资高的人
+		select * from emp
+		where comm>sal;
+
+		3、找出部门号是30且岗位是MANAGER的人
+		select * from emp where deptno = 30 and job = 'MANAGER';
+
+		4、找出工资大于等于1500且工资小于等于3000的人
+		select * from emp where sal >= 1500 and sal <= 3000;
+		between ... and ...:介于两者之间，包含边界值
+		select * from emp where sal between 1500 and 3000;
+
+		5、找出部门号是20和30的人
+		select * from emp where deptno=20 or deptno=30;
+		select * from emp where deptno in(20,30);
+		in:匹配列出的值，满足集合内任意值
