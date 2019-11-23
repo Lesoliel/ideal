@@ -1,0 +1,834 @@
+﻿软件质量
+重点：软件质量模型
+管理体系：ISO9000	CMM		六西格玛
+
+
+
+质量模型：
+1、功能性：
+	当软件在指定条件下使用时，软件产品提供满足明确和隐含需求的功能的能力
+2、可靠性：
+	在指定条件下使用时，软件产品维持规定的性能级别的能力
+
+	数据库核心：双机	集群
+	双机较为常见：主机		备机
+3、易用性
+	在指定条件下使用时，软件产品被理解、学习、使用和吸引用户的能力
+	
+4、性能
+	在规定条件下，相对于所用资源的数量，软件产品可提供适当性能的能力
+	
+	性能测试工具
+		Loadrunner
+		Jmeter
+	集群：保证可靠性；提高软件性能
+5、可维护性
+	软件产品可被修改的能力。修改可能包括修正、改进或软件对环境、需求和功能规格
+	说明变化的适应 
+	
+	现网问题优先处理
+	测试依据：软件运行日志（关键字阅读）
+	
+	开发要求：高内聚，低耦合（尽量将功能集中在一起，降低各模块关联性）
+		目的：易于代码修改，根据客户要求进行需求变更
+6、可移植性
+	软件产品从一种环境迁移到另外一种环境的能力
+	
+	测试浏览器
+	IE		Firefox		Chrome		（内核不同）
+	
+	
+SQA（简称QA）与测试
+	SQA：流程上
+	测试：技术
+	
+	
+保温杯测试：
+杯子：容量、数值准确、漏不漏水
+保温杯：保温性能（保温，保冷）
+安全性：盖子是否会弹开伤人，锁扣是否容易误触
+易用性：方便喝水否
+外观：图案、颜色、风格
+
+
+下午
+配置管理工具：SVN
+配置：项目文件
+	如：SRS		测试计划	测试方案	测试用例	测试工具
+	
+SVN：管理项目文件（类似于网盘，区别，多账号，同文件）
+CMO：配置管理员
+
+
+
+1、SVN连接服务端：网页连接方式	右击客户端工具浏览器方式，然后输入地址（URL），再输入账号密码
+	
+2、checkout：把SVN上的文件夹剪切到本地，当做本地文件夹使用
+	1、从浏览器中剪切
+	2、直接剪切，输入地址及粘贴地址
+	
+	本地文件夹使用中产生的文件及文件夹需要同步至服务器
+	
+	防止同一文件被覆盖，在修改时可以选择上锁，改完后同步自动解锁，如未修改需手动解锁
+	
+	对文件进行修改，提交时增加修改日志，后续可以回退至对应的日志节点
+	
+	
+	11-5
+缺陷管理及管理工具-禅道使用
+
+缺陷管理————即所谓BUG
+
+	冒烟测试：开发在打包之前先进行内部自测，再提交至测试的过程叫冒烟测试。
+
+	BUG跟踪流程
+	简易流程
+		测试————开发————测试（循环执行，先由测试人员提交至开发修复，然后再由开发走给测试验证，
+		直至此问题测试无误，关闭此问题单）
+	
+	标准流程
+		测试————测试主管————开发主管————开发
+		由测试主管从多方面审核此问题单是否具有实际价值
+		再由开发主管审核是否需要修改
+		同一个问题单只有第一次需要提交至对应主管，后续出现未通过直接交至开发人员
+		
+	CCB裁决：产品经理，SE，QA，PM（项目经理），测试主管，开发主管
+	
+缺陷管理的目的
+	1、保证信息一致性
+	2、保证缺陷得到有效的跟踪，解决
+	3、获取正确的BUG信息，用作缺陷分析和产品度量
+	
+缺陷管理工具的用户
+	开发人员Developer	修改问题单
+	测试人员Tester		提交及验证问题单
+	
+	测试升职方向：专业测试，产品经理
+	
+缺陷相关属性
+	发现人
+	发现时间
+	缺陷状态
+	缺陷严重程度
+	缺陷所属版本
+	缺陷修改日期
+	
+缺陷的严重性
+	致命：本身不可使用或已影响其他软件及系统
+	严重：单个功能引起的相关功能失效及部分重要单个功能
+	一般
+	提示：UI界面上的一些问题
+	
+缺陷管理中常见问题
+	1、提交的缺陷开发人员不认可
+		根据SRS证明
+		从用户习惯与业界标准上入手
+	2、如何处理不能重现的缺陷
+		保持OPEN状态，每个版本持续跟踪观察，直至版本发布
+	3、如何处理好与开发及其他人员的关系
+		出现问题对事不对人，不要带有个人情绪，休息时间多交流
+	4、缺陷太多怎么办
+		就是论事，提出来
+	5、找不到缺陷怎么办
+		参考一下别人的问题单，多看看SRS
+	6、缺陷得不到及时修复怎么办
+		正常处理
+	7、如何处理缺陷级别定义
+		致命级别谨慎处理
+	8、如何处理缺陷跟踪中的扯皮现象
+		测试全面，尽力杜绝现网问题
+
+样例模拟测试
+	1、
+		输入数字1,2,3 ————实现对应功能
+		输入非1,2,3的字母，字符，汉字，1,2,3,以外的数字 ————提示
+		
+		1）进入子菜单后无法返回主菜单页面
+		2）子菜单界面说明不明确
+		3）输入非提示字符后，界面出现提示信息后未进入主菜单
+	2、
+		无@无. ：
+		有@无. ：@在开头，@在中间，@在最后
+		无@有. ：.在开头，.在中间，.在最后
+		有@有. ：@在.前面，@在.后面
+	3、
+		正常登陆和异常登录时均会将输入密码明文显示在密文后，且会将正确密码明文显示在下一行
+		才会输出提示信息
+		.在@前可以成功注册登陆
+		
+		
+禅道工具使用
+虚拟机IP查询：run+cmd	ipconfig
+
+BUG管理工具禅道的使用
+BUG异常单的书写提交，BUG流程的跟踪过程
+测试过程及系统测试
+功能	性能	易用性	移植	安全	可靠
+
+系统测试（System Testing）
+测试的根本目的：根据SRS测试产品的功能是否符合要求，找出不合理的BUG提交修改
+
+项目流程（PM）：项目计划-需求分析-设计-编码-测试
+	项目计划，SRS（分析），开发（设计，编码），测试
+	开发组
+	测试组
+
+测试流程：测试计划-测试方案-测试用例-执行测试
+
+BUG流程：测试-开发-回归测试
+
+测试方案：功能说明		测试点
+
+	1、找出模块上有哪些需要测试的
+	2、测试点的功能说明
+	3、测试点具体的功能说明及测试方法
+	通用测试用例写作
+	掌握通用测试用例的格式
+	理解格式中每一项的含义
+
+	格式：
+	1、编号
+		字符数字组成，编号具有唯一性，易识别性
+	2、测试的模块
+		当前用例所针对的模块
+	3、测试标题（出发点及想要的预期结果）
+		测试用例的简单描述，需要语言概括用例的出发点和关注点，标题唯一不能重复
+	4、重要级别（高，中，低）
+		高级别：基本功能，核心业务，重要特性，实际使用频率较高的用例
+		中级别：多数为异常状况的用例
+		低级别：不常用的一些功能
+	5、预置条件（前提条件）
+		执行当前用例的前提条件，否则步骤无法进行或无法得到预期结果
+	6、输入（测试数据）
+		各种格式的数据
+	7、操作步骤（实测时的具体操作）：步骤1,2,3列出
+		步骤要清楚
+	8、预期输出
+		输出结果如：返回值内容，界面相应结果，输出结果的符合度
+		查看后台数据库确认是否正确
+
+从功能出发，再考虑安全性易用性等方面
+
+	测试用例评审：SE，开发所有人员，测试所有人员Linux学习
+
+	IP查询
+	ping IP地址
+	再看回复结果
+	
+	根目录“/”
+	etc	操作系统的配置文件目录（类似于C盘	系统盘）
+	home 用户文件夹，类似于D盘等
+	cd = change directory	更换目录	作用类似于Windows双击动作
+	切换到根目录 cd /
+	ls 查看当前目录下的文件		（区别于Windows的点击后自动显示当前目录下内容）
+	切换目录必须加上上级目录
+	切换目录时，键入部分目录后，如果以此开头的目录唯一，使用TAB键可以补全此目录
+	cd .. ，退回上级目录
+	pwd		显示当前目录的路径
+	注销	Logout
+	重启	reboot
+	关机	Shutdown
+	查看文件	cat 文件名
+	zhangzhou:x:500:500:	用户 密码 用户编号 组编号
+	
+	用户管理命令
+		用户管理类
+			useradd		增加用户	
+				useradd -g 组名 用户名（组名必须已存在）
+				1、创建的账号信息保存在/etc/passwd文件中	
+				2、此账号的文件夹	/home/用户名（文件夹）
+			passwd		设置密码	（命令后加用户改用户密码，不加改管理员密码！！）
+			usermod		改用户设置		usermod -g 新组 用户名 将用户由默认组改至新组
+			userdel		删除用户信息
+				userdel 用户名	只删除/etc/passwd中的用户信息，/home/用户名（文件夹）仍存在
+				userdel -r 用户名 	删除/etc/passwd中的用户信息，/home/用户名（文件夹）也被删除
+		组管理类
+			groupadd	增加组
+				组信息在/etc/group 文件里查看
+			groupdel	删除组信息
+			groupmod	修改组名	groupmod -n 新名字 旧的组名
+			
+		cd 
+		ls 
+		useradd name
+		useradd -g group name
+		usermod -g group name
+		userdel name
+		userdel -r name
+		groupadd name
+		groupmod -n newname oldname
+		groupdel name
+Linux学习——2文件管理
+	双击动作
+
+	cd xxx
+	ls xxx
+	快速切换账号
+	su - 用户名
+	su - duoshou		切换至duoshou账号
+	
+	文件管理：
+		1、文件夹、文件
+		创建文件夹：mkdir(make directory)	mkdir test
+		创建文件：touch 文件名
+		文件编辑：vi	文件编辑器
+		vi 文件名：打开文件，按i可以输入，退出编辑ESC键，保存:w,退出:q,保存退出:wq,强制退出:q!
+		非编辑状态下		r 替换字符，x 删除字符，dd 删除一行，n dd 删除多行（先输入数字，再输入dd）,u 撤销	
+		:s/a/b	将当前行的第一个a替换为b
+		:s/a/b/g	将当前行的所有的a替换为b
+		:n,$s/a/b/g	将从第n行开始到最后一行的a替换为b
+		/要查找的字符	将会标记处要查找的内容，去除标记查找不存在的内容即可
+		
+		2、重命名、剪切
+		mv 文件夹名（文件名） 新名字	将文件改名为新名字
+		mv a 路径/文件夹名（文件名）	将a移到对应位置
+		
+		3、grep查询命令
+		grep “字符串” 文件名		在文件里找符合字符串的内容
+		
+		4、sort命令（排序）
+		需要为一列，一行不可以
+		
+		5、cp拷贝命令
+		cp 文件目录 目标目录
+		
+		6、文件发送scp
+		scp 文件 账号@ip:路径
+		
+	mkdir 
+	touch
+	vi
+	cp
+	mv
+	grep
+	scp
+		
+		
+		
+		
+		
+		Linux学习-3
+su 用户名	切换后不会切换到对应根目录，容易产生无权限操作
+
+	1、find命令
+	find 目标目录 命令参数 被查询文件名
+	find ~ -name "*.txt"
+		常用目录	~当前用户根目录		.当前目录
+		
+	2、文档管理命令
+	cat 文件名			显示当前文档全部内容
+	head -n 文件名		显示开头n行内容
+	more +a -b 文件名	从第a行开始，每页显示b行输出文档内容
+	less +a -b 文件名	从第a行开始，每页显示b行输出文档内容（可上下翻页）
+	tail -n 文件名		显示文档倒数n行的内容	tail -f 文件名	动态刷新显示内容（类似于日志时比较方便）
+	
+	3、文件权限命令
+	ls -a			显示所有文件（包含隐藏文件）
+	ls -l (缩写ll)	平铺显示文件详细信息	ls -l 文件名	只显示当前文件的详细信息
+	详细显示时前十个字段位文件权限信息
+	d rwx rwx rwx
+	第一位是文件类型	-是文档		d是目录		l是链接，即快捷方式(Linux中较少)
+	后面9位分三段，每段三位		r(4)读权限		w(2)写权限		x(1)执行权限	-为不存在此权限	read write execute 
+	rwx 三位二进制对应数字
+	第一段：文件拥有者的操作权限，即当前登录用户
+	第二段：组成员对此文件的操作权限
+	第三段：其他人员对此文件的操作权限
+	
+	权限更改	chmod u+r 文件名	chmod o+wx 文件名	chmod 427 文件名	4 r-- 2 -w- 7 rwx
+	u 用户		g 组成员 	o 其他人 	数字形式较为方便，较为常用
+	chmod 使用用户±权限 用户名			仅修改修改项的权限，未修改项权限默认不变
+	chmod 数字 用户名					数字形式已代表一个用户的三个权限情况，相当于重新赋权限，而不是仅改变修改项的权限
+	
+	IP修改
+	vi /etc/sysconfig/network-scripts/ifcfg-eth0	打开这个文件，修改其中ipaddr后的IP地址后保存
+	输入service network restart						重启网络服务
+	a | b	管道符，从a的结果中找出符合b的结果
+	PID：进程号
+	网络监听netstst (network status)
+	netstat -an | grep 本机IP	查询与本机网络连接的用户
+	netstat -anp | grep 本机IP		结果后显示此连接的进程号
+	kill pid	(杀掉进程)
+	kill -9 pid	(强制杀掉进程)
+	
+	磁盘管理
+	df	查看磁盘使用情况
+	du	查看指定目录或文件的大小
+	
+	查看系统运行状况top；动态显示	CPU和内存（看资源）
+	ps显示进程，静态
+	vmstat	静态显示系统运行状况（看资源）
+	ps -ef		显示全部进程
+	ps -ef | grep 要查看对象	筛选符合内容的
+	
+	free查看系统内存
+	
+	备份压缩命令
+	gzip 命令 文件名	压缩，原文件消失，变为文件名加.gz后缀
+	gunzip 文件名.gz	解压，文件变为文件名，后缀消失
+	gzip -d 文件名.gz 	解压，文件变为文件名，后缀消失
+	
+	打包
+	tar -cvf 包名 要打包的文件集合
+	显示打包信息，然后生成 包名.tar,原文件存在
+	解包
+	tar -xcf 包名.tar 
+	包内文件解压出，打包文件仍存在
+	tar -zcvf baoming.tar.gz 要打包压缩的文件名（可包含文件夹）
+	tar -zxcf baoming.tar.gz   解压此压缩包
+	
+	
+linux命令
+	1、用户管理类（需要ROOT账号）
+		useradd
+		usermod 
+		userdel
+		groupadd
+		groupmod
+		groupdel 
+	2、文件操作类
+		新建:mkdir,touch
+		mv 
+		cp
+		rm
+		vi 
+		查询：/ grep find
+		权限：chmod
+	3、系统管理
+		top 动
+		vmstat
+		
+		ps 进程 
+		
+		ifconfig 查IP
+		
+		df 查看系统磁盘
+		
+		du 查看指定目录或文件的大小
+		
+		netstat 网络监听
+		
+	tcpdump抓包命令
+	tcpdump -i eth0 -s 0 -vv -w /root/xx.pcap port 80
+	-i eth0				抓网络接口端口
+	-s 0				完整数据包
+	-vv					显示全部信息
+	-w /root/xx.pcap	存放文件路径
+	port 80 			80端口的包
+	
+
+企业站
+1.网易：http://mirrors.163.com/
+2.阿里云：http://mirrors.aliyun.com/ 同步频率为每天一次，每天凌晨2：00-4：00为镜像的同步时间
+3.搜狐：http://mirrors.sohu.com/
+
+1.清华大学：https://mirrors.tuna.tsinghua.edu.cn/
+2.中国科技大学：http://mirrors.ustc.edu.cn/ 目前是中国大陆高校访问量最大，收录最全的开源软件镜像。
+3.北京理工大学：http://mirror.bit.edu.cn/web/
+
+
+CentOS：http://mirror-status.centos.org/#cn
+Archlinux：https://www.archlinux.org/mirrors/status/
+Ubuntu：https://launchpad.net/ubuntu/+cdmirrors
+Debian：http://mirror.debian.org/status.html
+Fedora Linux/Fedora EPEL：https://admin.fedoraproject.org/mirrormanager/mirrors
+Apache：http://www.apache.org/mirrors/#cn
+Cygwin：https://www.cygwin.com/mirrors.html
+
+	
+	
+	
+	
+	全局数据库名————SID————数据库服务名    默认安装时orcl
+数据库管理员： sys   system（数据库口令针对管理员）
+    修改管理员密码manager
+    可操作人员SCOTT   密码tiger
+    sqlplus Oracle 默认的服务端命令行
+  oracle默认端口号1521
+  
+  
+		select * from emp;  
+		从表中查询列，*代表所有列，查询多列时，列之间用“，”隔开
+
+		select ename from emp;
+		select empno,ename,sal from emp;
+
+		select empno,ename,sal,sal+300 from emp;
+		select empno,ename,sal,(sal+500)*1.2 from emp;
+		列是数字类型时可以直接用表达式
+
+		select ename,sal,comm,sal+comm from emp;
+		select ename 姓名,sal 工资,(sal+500)*1.2 涨薪后 from emp;
+		select ename "XingMing" from emp;
+		给列取别名，列名后空格加别名，别名想要区分大小写
+		或者别名内容敏感时用“”括起
+
+		作业1：显示员工月工资（底薪加提成）
+		select ename,sal, comm,sal+nvl(comm,0) from emp;
+		与空值运算时使用nvl将空值转0后再运算
+
+		select ename||sal from emp;
+		||：连接符，用来连接列，列和字符串，字符串要用单引号括起来
+		select ename||'的工资是：'||sal from emp;
+		每一行的值都会显示连接符中间内容
+
+		去重查询:distinct
+		select distinct deptno from emp;
+		select distinct job from emp;
+
+		SQL语句分类
+		数据查询
+		数据操纵(DML)
+		数据定义(DDL)
+		事务控制(TCL)
+		数据控制(DCL)
+
+		作业2：PPT第二章3个练习题
+
+		限定查询 where
+		SQL语句不区分大小写，但表中数据的值严格区分大小写
+		------------------------------
+		1、找出名字叫SMITH的人
+		select * from emp where ename = 'SMITH';可以
+		select * from emp where ename = 'smith';不可以
+		关系运算符：>,<,>=,<=,<>(!=)(不等于)
+
+		2、找出提成比工资高的人
+		select * from emp
+		where comm>sal;
+
+		3、找出部门号是30且岗位是MANAGER的人
+		select * from emp where deptno = 30 and job = 'MANAGER';
+
+		4、找出工资大于等于1500且工资小于等于3000的人
+		select * from emp where sal >= 1500 and sal <= 3000;
+		between ... and ...:介于两者之间，包含边界值
+		select * from emp where sal between 1500 and 3000;
+
+		5、找出部门号是20和30的人
+		select * from emp where deptno=20 or deptno=30;
+		select * from emp where deptno in(20,30);
+		in:匹配列出的值，满足集合内任意值
+	6、找出提成是空的人
+	select * from emp where comm is null;
+	找出提成不是空的人
+	select * from emp where comm is not null;
+	找出部门号不是20或30的人
+	select * from emp where deptno not in(20,30);
+
+	7、模糊匹配查询 like %:匹配多个字符：0个，1个或多个     _：匹配一个字符
+	找出名字第一个字母是S开头的人   开头是S'S%'  含有S'%S%'
+	select * from emp where ename like '%S%';
+	开头不是S的人
+	select * from emp where ename not like 'S%';
+	找出名字的第二个字母是A的人
+	select * from emp where ename like '_A%';
+	like 'B\_%' escape '\'
+	匹配开头为B，第二位为_的值，\屏蔽了_的匹配任意字符的功能，仅代表_本身
+
+	优先级：比较运算符，not and or
+
+	按列排序：order by 列名 (升序asc 或 降序desc)(升序可不写，默认升序)
+	按照工资从低到高的顺序排列
+	select * from emp order by sal;
+	按照工资从高到低的顺序排列
+	select * from emp order by sal desc;
+
+	select * from emp order by deptno,sal desc;
+	多个排序时，按顺序先排第一个，在第一个的结果上对内部进行排序以此类推
+	获取系统时间 sysdate  dual是虚表，不存在
+	select sysdate from dual;
+	使用日期计算
+	select ename,(sysdate-hiredate)/7 weeks from emp;
+
+	number类型：数字类型
+	number(4)                         4位整数
+	number(10,2)                      10位数，8位整数+2位小数
+
+	----------------------------------------------
+	笛卡尔集：两张表的每一条数据都会互联一遍，共会产生a*b条数据
+	又称一一映射
+	select * from emp,dept where ename='SMITH'; 
+	条件：两张表的部门号相同
+	SQL语句：emp.deptno = dept.deptno
+	select * from emp,dept where ename='SMITH' and emp.deptno = dept.deptno;
+
+	select * from emp,dept where emp.deptno = dept.deptno order by ename;
+	等值连接查询：条件：找两张表中相同的列
+
+	查找员工姓名，工资，部门号，部门地址
+	多表查询时列名前指定表：1、防止重复列报错2、提高性能，减少遍历范围
+	select ename,sal,emp.deptno,loc from emp,dept where emp.deptno = dept.deptno;
+	select e.ename,e.sal,e.deptno,d.loc from emp e,dept d where e.deptno = d.deptno;
+
+	等值连接，不等连接，外连接，自连接
+
+	不等连接
+	条件：emp表的sal处于salgrade表的losal和hisal之间
+	SQL语句：emp.sal between salgrade.losal and salgrade.hisal
+
+	select e.empno,e.ename,e.sal,s.grade from emp e,salgrade s
+	where e.sal between s.losal and s.hisal;
+
+	外连接：除了等值部分，可以看到不满足条件的的记录
+	分为左连接，右连接
+	右连接：+号在左边，显示的为=右边的表,显示等值内容及右表全部数据
+	select * from emp,dept where emp.deptno(+) = dept.deptno;
+	select * from emp right join dept on emp.deptno = dept.deptno;
+	左连接：+号在右边，显示的为=左边的表,显示等值内容及左表全部数据
+	select * from emp,dept where emp.deptno = dept.deptno(+);
+	select * from emp left join dept on emp.deptno = dept.deptno;
+
+	自连接：以同一张表的不同条件查询，将表起两个别名加以区别，然后相当于两张表的等值连接
+	查询员工姓名以及员工上司姓名
+	条件：用员工上司编号在员工表中再次进行查询
+	select w.ename,m.ename from emp w,emp m where w.mgr = m.empno;
+	select w.ename,m.ename from emp w,emp m where w.mgr = m.empno(+);
+
+-----------------------------------------------
+	找出最高薪资
+	select max(sal) from emp;       最大值
+	select min(sal) from emp;       最小值
+	select sum(sal) from emp;       求和
+	select avg(sal) from emp;       平均值
+	select count(*) from emp;       计数
+	select avg(comm) from emp;      只计算有值的记录，空值不算
+	select avg(nvl(comm,0)) from emp;     包含空值的平均值
+	select sum(comm)/count(*) from emp;
+
+	分组
+	求每个部门的平均薪资
+	普通列不能与组函数一起使用，除非这一列被分组
+	select deptno,avg(sal) from emp group by deptno; 
+	找出平均工资大于2000的部门
+	select deptno,avg(sal) from emp having avg(sal)>2000 group by deptno;
+	where:普通列进行筛选
+	having:对分组进行筛选
+	多个分组，先分组，内部再分组，类似 order by
+	select deptno,job,sum(sal) from emp group by deptno,job order by deptno;
+	统计每个部门的每个岗位薪资总和，并按照部门编升序排列
+	查询   部门最高工资大于1000的   部门最高工资
+	select deptno,max(sal) from emp having max(sal)>1000 group by deptno;
+
+11.18
+	子查询:用子语句的结果作为主语句的判断条件
+	1、找出工资比JONES高的人
+	1）找出JONES的工资--2975
+		   select sal from emp where ename='JONES';
+	2）找出比JONES的工资高的人--找出工资大于2975的人
+		   select * from emp where sal>2975;
+	select * from emp where sal>(select sal from emp where ename='JONES');
+
+	2、找出工资高于工号7844的工资的人
+	select * from emp where sal > (select sal from emp where empno = 7844);
+
+	3、找出岗位与7369一样且工资比工号7876高的人
+	select * from emp where job = (select job from emp where empno = 7369)
+	and sal > (select sal from emp where empno = 7876);
+
+	4、找出工资与最低工资一样的人的姓名，岗位，工资
+	select ename,job,sal from emp where sal = (select min(sal) from emp);
+
+	5、找出 最小工资比20号部门的最小工资大的 部门号和部门最小工资
+	--组函数筛选用having
+	select deptno,min(sal) from emp 
+	having min(sal)> (select min(sal) from emp where deptno = 20)
+	group by deptno;
+
+	6、找出比岗位是CLERK的所有人工资都高的人
+	select * from emp where sal> (select max(sal) from emp where job='CLERK');
+	select * from emp where sal> all(select sal from emp where job='CLERK');
+
+	all 比较时要比较所有值
+	any 比较时满足极值
+
+	select dname from dept where deptno not in(select deptno from emp);
+	select * from emp where sal < (select avg(sal) from emp);
+	select * from emp 
+	where sal < any(select avg(sal) from emp group by deptno);
+
+
+	----------------------------------
+	数据操作
+	select * from dept;
+	insert into dept values(50,'test','nanjing');
+	insert into dept(deptno,dname,loc) values(60,'develope','hangzhou');
+	insert into dept(deptno,dname) values(70,'chanpin');
+	insert into dept(deptno,loc) values(80,'wuhan');
+
+	update dept set loc='jinling' where loc='nanjing';
+	不加where条件会修改loc整列为jinling
+	delete from dept where deptno=80;
+	不加where会将整张表内容删除
+
+	控制事务
+	commit：提交，将数据提交至服务器
+	rollback：回滚，在commit之前方有效
+
+	insert into dept values(54,'QA','wuxi');
+	commit;
+	delete from dept where deptno = 54;
+	rollback;
+
+	保留点：savepoint；
+
+	select * from dept for update;	打开查询结果可编辑状态
+
+	to_date('真实日期','日期格式')
+	to_date('2019-11-18','YYYY-MM-DD')
+
+	----------------------------------第九章
+	sql server数据类型：char(10)（单字节英文），nchar(10)（双字节十位，存储汉字），int
+	oracle数据类型：number（10，2），number（10），char（10）（定长，默认占据10字节），
+	varchar2（10）（用几位占据几位内存空间，剩余释放），int，date
+
+	创建表
+	create table caidan(
+	bianhao number(2),
+	caiming varchar2(20),
+	price number(5,2),
+	shuliang int,
+	kouwei varchar2(5) default'微辣'
+	);
+	select * from caidan;
+	insert into caidan(bianhao,caiming,price,shuliang) values(3,'烤鱼',138,2);
+	commit;
+	insert into caidan(bianhao,caiming,price,shuliang) values(1,'黄焖鸡',18,1);
+	commit;
+	select * from bonus;
+
+	sqlserver 
+	增加列：alter table biaoming add lie
+	修改列：alter table biaoming alter lie
+	删除列：alter table biaoming drop lie
+
+	oracle
+	增加列：alter table biaoming add lie
+	修改列：alter table biaoming modify lie
+	删除列：alter table biaoming drop lie
+
+	delete from :删除数据，可以回退，不释放空间
+	truncate : 删除数据，不可回退，释放空间
+	drop ：删除表（表结构和表数据），不可以回退，释放空间
+
+11.19 oracle 学习 4
+第十章
+	约束：not null , unique , primary key ,  foreign key
+	主键：constraint 表名_列名_pk key(列名)
+	外键：constraint 表名_列名_fk key(列名) references 表名（列名）
+
+第十一章
+	视图：数据基于表，本身无数据，是逻辑表，查询表时实际是通过定义语句来查询真实表
+	创建视图：
+	create view 视图名
+	as
+	筛选条件（要显示的数据）
+
+	索引：提高搜索性能
+
+第十二章
+	创建用户：create user user_name identified by password;
+	授予用户权限：grant  权限名 to user_name;
+	删除用户权限：revoke  权限名 from user_name；
+	授予用户系统权限：grant create session to user_name with admin session;
+
+	create user damahou identified by damahou;
+	grant create session to damahou;
+	revoke create session from damahou;
+	grant create session to damahou with admin option;
+	create user ergouzi identified by damahou;
+	grant create session to ergouzi;
+	revoke create session from damahou;
+
+	修改密码：在服务端打开cmd中sqlplus，用户输入 sys / as sysdba，忘记管理员密码时按两下enter可直接进入
+
+	数据库的备份和恢复：服务端操作
+	备份：导出数据
+	导出整个库：
+	exp 用户名/密码@SID file=导出路径\文件名称，full=y;
+	exp system/manager@orcl file=c:\daochuku.dmp,full=y;
+
+	导出指定用户下的表
+	exp 用户名/密码@SID file=导出路径\文件名称，owner=（用户1，用户2）;
+	exp system/manager@orcl file=c:\daochubiao2.dmp,owner=(scott);
+
+	数据恢复：导入数据
+	imp 用户名/密码@SID file=导出文件，full=y;
+	imp system/manager@orcl file=c:daochuku.dmp,full=y;
+
+11.21
+Oracle的Linux安装11.21	shell编程学习
+
+建立一个可执行shell脚本的步骤
+	1、建立脚本文件 touch file.sh 
+	2、编辑脚本内容
+		第一行#！空格 选择执行的shell类型
+		要执行的内容
+	3、赋予脚本执行权限		chmod +x file.sh
+	4、./脚本名 运行脚本	./file.sh
+
+	echo -e 字符串	字符串内可以加\t(空格TAB) \n(换行) \敏感符号：屏蔽后输出
+	echo "nihao"		输出nihao
+	echo " \"\" "		输出""
+	read 变量名 		定义变量名，enter后提示输入
+	vi file.sh
+	chmod +x file.sh 	给文件增加执行权限
+	./file.sh			执行脚本 ./file.sh		sh file.sh 		source file.sh
+11.22
+	11-22 Shell学习2
+	文件重定向		> 覆盖内容		>>在末尾追加
+	cat file1 > file2	把file1 的内容输入到file2，覆盖file2 的原文件
+	cat file1 >> file2 	把file1 的内容输入到file2，在file2文件末尾追加，不会覆盖原内容
+	
+	sed 将输出内容进行更改
+	sed  ‘s/a/b/’ data.txt>fa.txt    将每行第一个字母a改成b，将结果输入到fa.txt
+	sed  ‘s/a/b/2’ data.txt>fa.txt  将每行第2个字母a改成b，将结果输入到fa.txt
+	sed ‘s/a/b/g’ data.txt>fa.txt   将每行的所有字母a改成b,将结果输入到fa.txt
+	d    删除，删除地址
+	sed ‘2d’ data.txt > fa.txt   将第二行删除，将结果输入到fa.txt
+	sed  ‘2,3d’ data.txt >fa.txt  将第二行第三行删除
+	sed  ‘3,$d’  data.txt > fa.txt  将第三行到最后一行删除
+	a   在指定行后加一个行，i 在指定行前面加一行
+	sed ‘3a\
+	 I am ok’  data.txt > fa.txt    在第三行后面加一行(注：添加行后面注意加引号)
+	sed ‘3i\
+	I am good’ data.txt > fa.txt   在第三行前面加一行
+
+	awk 提取列输出 空格隔开算一列
+	awk '{print $cloumn}' file 		提取文件第n列输出，输出多列,号隔开
+	
+	定时crontab
+	crontab -e		在打开的文件中输入定时时间，要运行的脚本地址，即可在固定时间自动执行
+	crontab -e 		* * * * *　／home/zhangzhou/exercise/files/renwu.sh	每分钟执行一次renwu.sh 这个脚本
+	crontab -e 		编辑crontab文件：编辑内容，可以设置定时时间，要执行的动作
+    crontab -l      列出crontab文件中的内容：可以列出正在执行的定时任务
+    crontab -r      删除crontab文件:即取消定时任务
+	
+	" "			双引号里面是字符串
+	` `			反引号里面是命令
+	\			反斜线可以屏蔽字符的特殊含义
+	' '			单引号内特殊字符被屏蔽
+	位置变量$n 无需定义，直接使用，多用在脚本内需要输入的地方
+	特定变量
+	$#	传递到脚本的参数个数
+	$*	以一个单字符串的形式显示所有向脚本传递的参数，与位置变量不
+		同，此项参数可超过9个
+	$$	脚本运行的当前进程id号
+	$!	后台运行的最后一个进程的进程id号
+	$?	显示最后命令（即上一条）的退出状态，0表示正确，其他任何值表示错误
+	echo $?	
+	测试语句test：
+	test 参数 判断对象 或 [ 参数 判断文件 ]	跟据参数来判断内容，一定要注意中括号前后的空格
+	文件测试
+		-d 目录吗？		-w 可写吗	-r 可读吗 	-x 可执行吗 	-s 非空吗
+		可用逻辑运算符增加判断个数	-a 逻辑与	-o 逻辑或 	!逻辑非
+		测试语句无输出，测试结果多需要通过 echo $?来查询执行标志 0是判断符合 非0是判断不符合
+	字符串测试
+		= 相等		！= 不等于 		-z 空串  	-n 非空串
+	数值测试
+		-eq 数值相等	-ne 数值不等 	-gt 第一个数大于第二个数 	-lt 第一个数小于第二个数
+		-le 第一个数小于等于第二个数 	-ge 第一个数大于等于第二个数
+	expr语句
+		expr 10 + 10 命令后、数字与符号之间需要空格
+	
+	
+	
